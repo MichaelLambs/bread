@@ -8,12 +8,15 @@ var schema = new Schema({
     title: { type: String, required: true },
     style: { type: String},
     ingredients: {type: Array},
+    bakeTime: {type: Number},
+    bakeTemp: {type: Number},
+    fermentation: {type: Array},
     yield: {type: String},
     photos: {type: Array},
     pub: {type: Boolean, default: false},
     totalTime: {type: String},
     date: { type: Date, required: true, default: new Date(Date.now()) },
-    userId: { type: ObjectId, ref: 'User' },
+    userId: { type: ObjectId, ref: 'User' }
 });
 
 // schema.post('remove', function (next) {

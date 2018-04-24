@@ -8,6 +8,7 @@ var port = process.env.PORT || 3000;
 require("./server-assets/db/mlab-config");
 
 var authRoutes = require('./server-assets/auth/routes');
+var recipeRoutes = require('./server-assets/routes/recipes');
 
 var whitelist = ['http://localhost:8080', 'https://herokuapp.com/']
 
@@ -26,6 +27,7 @@ server.use(bp.urlencoded({ extended: true }))
 // server.use(express.static(__dirname + "/../public/www/dist"))
 
 server.use(authRoutes);
+server.use(recipeRoutes);
 
 
 server.use("*", (error, req, res, next) => {
