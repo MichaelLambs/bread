@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var Users = require("../models/user"); //empty right now
+var Users = require("../models/user");
 
 var errorMessage = { error: "Not Right Meow Bro" };
 
