@@ -5,9 +5,11 @@
           <div>
             <img src="https://www.placehold.it/40x40">
           </div>
-          <div>
-            {{user.username}}
-          </div>
+          <router-link :to="{path: '/user/' + user.username}">
+            <div>
+              <h5>{{user.username}}</h5>
+            </div>
+          </router-link>
         </div>
     </nav>
   </div>

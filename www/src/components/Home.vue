@@ -2,15 +2,19 @@
   <div class="Home">
     <navbar></navbar>
     <div class="flexor width100 centa">
-      <p @click="view = 1" class="pointer">Top</p>
-      <p @click="view = 2" class="pointer">Newest</p>
+      <p @click="view = 1, topRecipes()" class="pointer">Top</p>
+      <p @click="view = 2, newestRecipes()" class="pointer">Newest</p>
       <p @click="view = 3" class="pointer">All</p>
+    </div>
+    <div v-if="user">
+      <router-link :to="{path: '/recipe/new'}">
+        <button class="btn-block btn btn-outline-success">Create Recipe</button>
+      </router-link>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <top v-if="view == 1"></top>
-          <newest v-if="view == 2"></newest>
+          <recipes :view="view"></recipes>
         </div>
       </div>
     </div>
@@ -19,24 +23,36 @@
 
 <script>
   import Navbar from './Navbar.vue'
-  import TopRecipes from './TopRecipes.vue'
-  import NewestRecipes from './NewestRecipes.vue'
+  import Recipes from './Recipes.vue'
   export default {
     name: 'Home',
     data() {
       return {
-        view: 1
+        view: 1,
       }
+    },
+    mounted() {
+      this.$store.dispatch('topRecipes')
     },
     computed: {
       user() {
         return this.$store.state.user
       }
     },
+    methods: {
+      topRecipes(){
+        this.$store.dispatch('topRecipes')
+      },
+      newestRecipes(){
+        this.$store.dispatch('topRecipes')
+      },
+      createRecipe(){
+        console.log('cheese')
+      }
+    },
     components: {
       Navbar,
-      top: TopRecipes,
-      newest: NewestRecipes
+      recipes: Recipes
     }
   }
 

@@ -1,6 +1,7 @@
 <template>
-  <div class="Top-Recipes">
-    <h2>Top Recipes</h2>
+  <div class="recipes">
+    <h2 v-if="view == 1">Top Recipes</h2>
+    <h2 v-if="view == 2">Newest Recipes</h2>
     <div class="list-group">
       <div class="list-group-item" v-for="recipe in recipes">
         {{recipe.title}}
@@ -12,21 +13,19 @@
 
 <script>
   export default {
-    name: 'TopRecipes',
+    name: 'Recipes',
     data() {
       return {
-        view: 1
       }
     },
-    mounted() {
-      this.$store.dispatch('topRecipes')
-    },
+    mounted() {},
     computed: {
       recipes() {
         return this.$store.state.recipes
       }
     },
-    components: {}
+    components: {},
+    props: ['view']
   }
 
 </script>

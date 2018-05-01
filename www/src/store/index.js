@@ -20,18 +20,25 @@ vue.use(vuex)
 
 export default new vuex.Store({
   state: {
+    username: '',
     user: {},
     errorMessage: '',
-    recipes: []
+    recipes: [],
+    currentRecipe: {}
   },
   mutations: {
     // SETS RECIPES
     setRecipes(state, payload){
         state.recipes = payload;
     },
+    // SET THE CURRENT RECIPE BEING CREATED
+    setCurrentRecipe(state, payload){
+        state.currentRecipe = payload;
+    },
     // SETS CURRENT USER
     setUser(state, payload){
-        state.user = payload
+        state.user = payload;
+        state.username = payload.username;
     },
     // SETS ERROR MESSAGE FOR BAD LOGIN/SIGNUP
     setErrMessage(state, payload){
@@ -40,6 +47,20 @@ export default new vuex.Store({
   },
   actions: {
 
+    // SAVE RECIPE - FIRST STEP
+    saveRecipe({commit, dispatch}, payload){
+        console.log('FIRST SAVE', payload)
+        // debugger
+        serverAPI.post('recipes', payload)
+            .then(res => {
+                commit('setCurrentRecipe', res.data)
+                console.log('RETURN FROM FIRST SAVE', res.data)
+                router.push({path: '/user/' + this.username})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },
     // GET ALL PUBLIC RECIPES
     topRecipes({commit, dispatch}, payload){
         serverAPI.get('recipes')

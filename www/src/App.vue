@@ -9,9 +9,9 @@
     name: 'app',
     mounted() {
       this.$store.dispatch('authenticate').then(() => {
-        // this.$store.dispatch('getBoard', this.$route.params.boardId)
-      }),
-      document.body.addEventListener('scroll', this.scrolling);
+          // this.$store.dispatch('getBoard', this.$route.params.boardId)
+        }),
+        document.body.addEventListener('scroll', this.scrolling);
     },
     methods: {
       scrolling() {
@@ -25,7 +25,16 @@
 </script>
 
 <style>
-  .navbarChange{
+  a:hover {
+    text-decoration: none;
+    color: #eaeaea;
+  }
+
+  a {
+    color: #000;
+  }
+
+  .navbarChange {
     background-color: blue;
     border: 10px solid;
   }
@@ -66,8 +75,18 @@
     padding-top: 1rem;
   }
 
-  .pointer{
+  .pad-r {
+    padding-right: 1rem;
+  }
+
+  .pointer {
     cursor: pointer;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
 </style>
